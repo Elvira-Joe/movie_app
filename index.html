@@ -11,14 +11,13 @@
 <body>
     <h1>Movies Application</h1>
 
-    <h3>Loading...</h3>
+    <h3 id="loading">Loading...</h3>
 
     <!--Cards-->
     <div>
         <div id="movie-row" class="row">
 
         </div>
-
     </div>
 
     <!--jQuery-->
@@ -40,6 +39,7 @@
             }
             html += `</div>`;
             $('#movie-row').html(html);
+            $('#loading').css("display", "none");
         });
     </script>
 </body>
