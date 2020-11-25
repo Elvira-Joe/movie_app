@@ -13,7 +13,7 @@ const getMovies = () => fetch(apiURL)
 function buildCards(movie){
     let html = '';
 
-    html += `<div class="card mb-3" style="max-width: 540px;">
+    html += `<div class="card col-12 mb-3" style="max-width: 540px;">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src="${movie.poster}" class="card-img" alt="${movie.title}">
@@ -42,4 +42,3 @@ function buildCards(movie){
     //  </div>`;
     return html;
 }
-
