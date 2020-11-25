@@ -42,4 +42,3 @@ function buildCards(movie){
     //  </div>`;
     return html;
 }
-
