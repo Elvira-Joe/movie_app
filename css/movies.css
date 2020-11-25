@@ -12,6 +12,12 @@
     width: 100%;
 }
 
+/*Resizing height of the paragraph with a class of movie-plot to make sure they are all the same height*/
+.movie-plot {
+    position: relative;
+    height: 150px;
+}
+
 /*// Extra small devices (portrait phones, less than 576px)*!*!*/
 @media (max-width: 575.98px) {
 
