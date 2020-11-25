@@ -18,11 +18,11 @@ function buildCards(movie){
           <img src="${movie.poster}" class="card-img" alt="${movie.title}">
         </div>
         <div class="col-md-8">
-          <div class="card-body">
+          <div class="card-body movie-card-body">
             <h5 class="card-title movie-title">${movie.title}</h5>
             <p class="card-text movie-plot">${movie.plot}</p>
             <p class="card-text movie-id">${movie.id}</p>
-            <p class="card-text movie-rating"><small class="text-muted"><strong>${movie.rating}</strong></small></p>
+            <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
             <div>
                <button type="button" class="edit btn-secondary btn">Edit</button>        
                <button type="button" class="delete btn-danger btn">Delete</button>        
@@ -33,16 +33,11 @@ function buildCards(movie){
       </div>
     </div>`
 
-    // html += `<div class="card">
-    //  <img src="${movie.poster}" class="movie-posters">
-    //  <div class="card-body">
-    //  <h5 class="card-title movie-title">${movie.title}</h5>
-    //  <p class="card-text">${movie.plot}</p>
-    //  <p class="movie-id">${movie.id}</p>
-    //  </div>
-    //  <div class="card-footer">
-    //  <small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small>
-    //  </div>
-    //  </div>`;
     return html;
+}
+
+
+//Add New Movies Function
+function addNewMovies() {
+
 }
