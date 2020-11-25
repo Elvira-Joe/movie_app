@@ -12,7 +12,6 @@ const getMovies = () => fetch(apiURL)
 //Building Cards Function
 function buildCards(movie){
     let html = '';
-
     html += `<div class="card col-12 mb-3" style="max-width: 540px;">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -24,8 +23,13 @@ function buildCards(movie){
             <p class="card-text movie-plot">${movie.plot}</p>
             <p class="card-text movie-id">${movie.id}</p>
             <p class="card-text movie-rating"><small class="text-muted"><strong>${movie.rating}</strong></small></p>
+            <div>
+               <button type="button" class="edit btn-secondary btn">Edit</button>        
+               <button type="button" class="delete btn-danger btn">Delete</button>        
+            </div>  
           </div>
         </div>
+        
       </div>
     </div>`
 
