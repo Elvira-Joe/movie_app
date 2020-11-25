@@ -17,8 +17,8 @@
 
     <main>
         <!--Cards-->
-        <div class="container">
-            <div id="movie-row" class="row"></div>
+        <div class="container-fluid">
+            <div id="movie-row" class="row "></div>
         </div>
     </main>
 
@@ -36,7 +36,7 @@
 <script>
     "use strict";
     getMovies().then(movies => {
-        let html = `<div class="col-12 d-flex flex-wrap">`;
+        let html = `<div class="col-12 flex-wrap justify-content-around d-flex">`;
         for(let movie of movies) {
             html += buildCards(movie);
         }
