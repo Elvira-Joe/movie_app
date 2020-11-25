@@ -35,3 +35,9 @@ function buildCards(movie){
 
     return html;
 }
+
+
+//Add New Movies Function
+function addNewMovies() {
+
+}

@@ -18,6 +18,9 @@
     <main>
         <!--Cards-->
         <div class="container-fluid">
+            <div>
+                <button type="button" id="add-button" class="btn btn-primary mb-3">Add Movie</button>
+            </div>
             <div id="movie-row" class="row "></div>
         </div>
     </main>
@@ -41,10 +44,11 @@
             html += buildCards(movie);
         }
         html += `</div>`;
-        $('#movie-row').html(html);
-        $('#loading').css("display", "none");
+        $("#movie-row").html(html);
+        $("#loading").css("display", "none");
         $(".movie-id").css("display", "none");
         $(".movie-title").css("text-transform", "capitalize");
+        $("#add-button").css("visibility","visible");
     });
 </script>
 </body>
