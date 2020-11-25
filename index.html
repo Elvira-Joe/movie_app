@@ -14,7 +14,7 @@
     <h3 id="loading">Loading...</h3>
 
     <!--Cards-->
-    <div>
+    <div class="container">
         <div id="movie-row" class="row">
 
         </div>
@@ -40,6 +40,8 @@
             html += `</div>`;
             $('#movie-row').html(html);
             $('#loading').css("display", "none");
+            $(".movie-id").css("display", "none");
+            $(".movie-title").css("text-transform", "capitalize");
         });
     </script>
 </body>
