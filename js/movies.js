@@ -39,14 +39,17 @@ function buildCards(movie){
 }
 
 function openForm() {
-    document.getElementById("myForm").style.display = "block";
+    $("#myForm").css("display", "block")
+    $("body").css("opacity", "0.4");
 }
 
 function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+    $("#myForm").css("display", "none");
 }
 
 $("#add-button").click(openForm);
+
+$("#close-button").click(closeForm);
 
 
 // Add New Movies Function
