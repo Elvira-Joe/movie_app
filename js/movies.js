@@ -38,7 +38,7 @@ function buildCards(movie){
     return html;
 }
 
-//Add Movie Function to create a POST Request
+//New Movie Object (created based on the example given in the curriculum)
 const newMovieObj = {
     title: $("#new-movie-title").val(),
     rating: $("#new-movie-rating").val(),
@@ -49,6 +49,7 @@ const newMovieObj = {
     id: 10000
 };
 
+//Add Movie Function to create a POST Request
 const addNewMovie = (movie) => fetch(`${apiURL}`, {
     method: 'POST',
     headers: {
@@ -64,4 +65,3 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
     .catch(console.error);
 
 $("#save-new-movie").click(addNewMovie(newMovieObj));
-
