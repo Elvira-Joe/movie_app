@@ -39,17 +39,29 @@ function buildCards(movie){
 }
 
 //Add Movie Function to create a POST Request
+const newMovieObj = {
+    title: $("#new-movie-title").val(),
+    rating: $("#new-movie-rating").val(),
+    poster: $("#new-movie-poster").val(),
+    year: $("#new-movie-year").val(),
+    director: $("#new-movie-director").val(),
+    plot: $("#new-movie-plot").val(),
+    id: 10000
+};
 
-const addDog = (dog) => fetch(`${apiURL}`, {
+const addNewMovie = (movie) => fetch(`${apiURL}`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify(dog)
+    body: JSON.stringify(movie)
 })
     .then(res => res.json())
     .then(data => {
         console.log(`Success: created ${JSON.stringify(data)}`);
-        return data.id; // to access the primary key of the newly created entity
+        return movie;
     })
     .catch(console.error);
+
+$("#save-new-movie").click(addNewMovie(newMovieObj));
+
