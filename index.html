@@ -9,105 +9,6 @@
     <link rel="stylesheet" href="css/movies.css">
 </head>
 <body>
-
-    <!-- Button trigger modal -->
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="new-movie-title">Movie Title</label>
-                            <input type="text" class="form-control" id="new-movie-title" placeholder="name@example.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="new-movie-rating">Star Rating</label>
-                            <select class="form-control" id="new-movie-rating">
-                                <option>1 Star</option>
-                                <option>2 Stars</option>
-                                <option>3 Stars</option>
-                                <option>4 Stars</option>
-                                <option>5 Stars</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="new-movie-year">Movie Year</label>
-                            <input type="text" class="form-control" id="new-movie-year" placeholder="Movie Year">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!--    <div class="form-popup" id="myForm">-->
-<!--        <form action="/action_page.php" class="form-container">-->
-
-<!--            <div class="form-group row">-->
-<!--                <label for="new-movie-title" class="col-sm-2 col-form-label">Movie Title</label>-->
-<!--                <div class="col-sm-10">-->
-<!--                    <input type="text" class="form-control" id="new-movie-title">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="form-group row">-->
-<!--                <label for="new-movie-rating" class="col-sm-2 col-form-label">Movie Rating</label>-->
-<!--                <select id="new-movie-rating" class="form-control">-->
-<!--                    <option >1 Star</option>-->
-<!--                    <option >2 Star</option>-->
-<!--                    <option >3 Star</option>-->
-<!--                    <option >4 Star</option>-->
-<!--                    <option >5 Star</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <div class="form-group row">-->
-<!--                <label for="new-movie-year" class="col-sm-2 col-form-label">Year Released</label>-->
-<!--                <div class="col-sm-10">-->
-<!--                    <input type="text" class="form-control" id="new-movie-year">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="form-group row">-->
-<!--                <label for="new-movie-description" class="col-sm-2 col-form-label">Plot</label>-->
-<!--                <textarea id="new-movie-description" name="new-movie-description"></textarea>-->
-<!--            </div>-->
-<!--            <div class="form-group row">-->
-<!--                <label for="new-movie-poster" class="col-sm-2 col-form-label">Movie Poster URL</label>-->
-<!--                <div class="col-sm-10">-->
-<!--                    <input type="text" class="form-control" id="new-movie-poster">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="form-group row">-->
-<!--                <div class="col-sm-10">-->
-<!--                    <button type="submit" class="btn btn-primary">Add Movie</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="form-group row">-->
-<!--                <div class="col-sm-10">-->
-<!--                    <button type="button" id="close-button" class="btn btn-primary">Close</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-
     <header>
         <h1>Movie Application</h1>
         <h3 id="loading">Loading...</h3>
@@ -116,8 +17,64 @@
     <main>
         <!--Cards-->
         <div class="container-fluid">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">Launch demo modal</button>
-            <div id="movie-row" class="row "></div>
+
+            <!--Add Movie Modal/Form -->
+            <div class="modal fade" id="add-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalScrollableTitle">Add Movie</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="new-movie-title">Movie Title</label>
+                                    <input type="text" class="form-control" id="new-movie-title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Plot</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-movie-director">Director</label>
+                                    <input type="text" class="form-control" id="new-movie-director">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-movie-year">Movie Year</label>
+                                    <input type="text" class="form-control" id="new-movie-year">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-movie-rating">Star Rating</label>
+                                    <select class="form-control" id="new-movie-rating">
+                                        <option>1 Star</option>
+                                        <option>2 Stars</option>
+                                        <option>3 Stars</option>
+                                        <option>4 Stars</option>
+                                        <option>5 Stars</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-movie-poster">Movie Poster URL</label>
+                                    <input type="text" class="form-control" id="new-movie-poster">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Add Movie Button -->
+            <button type="button" id="add-movie-btn" class="btn btn-primary" data-toggle="modal" data-target="#add-movie-modal">Add Movie</button>
+
+            <!--Movie Cards Row-->
+            <div id="movie-row" class="row"></div>
         </div>
     </main>
 
@@ -144,7 +101,7 @@
         $("#loading").css("display", "none");
         $(".movie-id").css("display", "none");
         $(".movie-title").css("text-transform", "capitalize");
-        $("#add-button").css("visibility","visible");
+        $("#add-movie-btn").css("visibility","visible");
     });
 </script>
 </body>
