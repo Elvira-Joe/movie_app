@@ -21,8 +21,10 @@ function buildCards(movie){
           <div class="card-body movie-card-body">
             <h5 class="card-title movie-title">${movie.title}</h5>
             <p class="card-text movie-plot">${movie.plot}</p>
-            <p class="card-text movie-id">${movie.id}</p>
+            <p class="card-text movie-director">${movie.director}</p>
+            <p class="card-text movie-year">${movie.year}</p>
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
+            <p class="card-text movie-id">${movie.id}</p>
             <div>
                <button type="button" class="edit btn-secondary btn">Edit</button>        
                <button type="button" class="delete btn-danger btn">Delete</button>        
