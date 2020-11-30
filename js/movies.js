@@ -62,7 +62,8 @@ $("#save-new-movie").click(() => {
         director: $("#new-movie-director").val(),
         plot: $("#new-movie-plot").val()
     };
-    addNewMovie(newMovieObj)});
+    addNewMovie(newMovieObj);
+});
 
 
 //Delete movie function accessed through the "delete" button inside each card
@@ -82,18 +83,8 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
 $(document).on('click', '.delete', function() {
     let dataId = $(this).data("id");
     deleteMovie(dataId);
+    // $(this).parent().parent().parent().css("display", "none")
 });
 
+//Edit button
 
-//Adding click event to dynamically created elements/button jQuery
-//stick to ES5 or ES6
-//Accessing IDs: // data attribute data-id
-
-    // // Get the main heading h1 by id
-    // let movieInfo = document.getElementsByTagName('li');
-    // $("")
-    //
-    // for (var i = 0; i < listItems.length; i++) {
-    //     var dbId = listItems[i].getAttribute("data-dbid");
-    //     console.log(dbId);
-    // }
