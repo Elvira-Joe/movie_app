@@ -38,7 +38,6 @@ function buildCards(movie){
     return html;
 }
 
-
 //Add Movie Function to create a POST Request
 const addNewMovie = (movie) => fetch(`${apiURL}`, {
     method: 'POST',
@@ -79,3 +78,9 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     })
     .catch(console.error);
 
+$(".delete").click(() => {console.log("Hi!")});
+// $(".delete").click(() => {deleteMovie()});
+
+//Adding click event to dynamically created elements/button jQuery
+//stick to ES5 or ES6
+//Accessing IDs: // data attribute data-id
