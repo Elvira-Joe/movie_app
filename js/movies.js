@@ -15,7 +15,7 @@ function buildCards(movie){
     html += `<div class="card col-12 mb-3" style="max-width: 540px;">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="${movie.poster}" class="card-img" alt="${movie.title}">
+          <img src="${movie.poster}" class="card-img movie-poster" alt="${movie.title}">
         </div>
         <div class="col-md-8">
           <div class="card-body movie-card-body">
@@ -28,7 +28,7 @@ function buildCards(movie){
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
             <p class="card-text movie-id">${movie.id}</p>
             <div>
-               <button type="button" data-id="${movie.id}" data-title="${movie.title}" data-plot="${movie.plot}" data-director="${movie.director}" data-year="${movie.year}" data-genre="${movie.genre}" data-actors="${movie.actors}" data-rating="${movie.rating}"class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
+               <button type="button" data-id="${movie.id}" data-title="${movie.title}" data-poster="${movie.poster}" data-plot="${movie.plot}" data-director="${movie.director}" data-year="${movie.year}" data-genre="${movie.genre}" data-actors="${movie.actors}" data-rating="${movie.rating}" class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
                <button type="button" data-id="${movie.id}" class="delete btn-danger btn">Delete</button>        
             </div>  
           </div>
@@ -51,6 +51,7 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
     .then(res => res.json())
     .then(data => {
         console.log(`Success: created ${JSON.stringify(data)}`);
+        refresh();
         return movie;
     })
     .catch(console.error);
@@ -62,6 +63,8 @@ $("#save-new-movie").click(() => {
         rating: $("#new-movie-rating").val(),
         poster: $("#new-movie-poster").val(),
         year: $("#new-movie-year").val(),
+        genre: $("#new-movie-genre").val(),
+        actors: $("#new-movie-actors").val(),
         director: $("#new-movie-director").val(),
         plot: $("#new-movie-plot").val()
     };
@@ -78,6 +81,7 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
 })
     .then(res => res.json())
     .then(() => {
+        refresh();
         console.log(`Success: deleted movie with id of ${id}`);
     })
     .catch(console.error);
@@ -96,6 +100,7 @@ $(document).on('click', '.delete', function() {
 //Function to prepopulate the add/edit movie modal
 $(document).on('click', '.edit', function() {
     let dataTitle = $(this).data("title");
+    let dataPoster = $(this).data("poster");
     let dataPlot = $(this).data("plot");
     let dataDirector = $(this).data("director");
     let dataYear = $(this).data("year");
@@ -103,14 +108,15 @@ $(document).on('click', '.edit', function() {
     let dataActors = $(this).data("actors");
     let dataRating = $(this).data("rating");
     let dataId = $(this).data("id");
-    $("#edit-movie-title").attr("value", dataTitle)
-    $("#edit-movie-plot").attr("value", dataPlot)
-    $("#edit-movie-director").attr("value", dataDirector)
-    $("#edit-movie-year").attr("value", dataYear)
-    $("#edit-movie-genre").attr("value", dataGenre)
-    $("#edit-movie-actors").attr("value", dataActors)
-    $("#edit-movie-rating").attr("value", dataRating)
-    $("#edit-movie-id").attr("value", dataId)
+    $("#edit-movie-title").val(dataTitle)
+    $("#edit-movie-poster").val(dataPoster)
+    $("#edit-movie-plot").text(dataPlot)
+    $("#edit-movie-director").val(dataDirector)
+    $("#edit-movie-year").val(dataYear)
+    $("#edit-movie-genre").val(dataGenre)
+    $("#edit-movie-actors").val(dataActors)
+    $("#edit-movie-rating").val(dataRating)
+    $("#edit-movie-id").val(dataId)
 });
 
 //Function to indicate that we are modifying an existing movie
@@ -125,6 +131,7 @@ const editMovie = movie => fetch(`${apiURL}/${movie.id}`, {
     .then(res => res.json())
     .then(data => {
         console.log(`Success: created ${JSON.stringify(data)}`);
+        refresh();
         return movie;
     })
     .catch(console.error);
@@ -136,6 +143,8 @@ $("#save-edit-movie").click(() => {
         rating: $("#edit-movie-rating").val(),
         poster: $("#edit-movie-poster").val(),
         year: $("#edit-movie-year").val(),
+        genre: $("#edit-movie-genre").val(),
+        actors: $("#edit-movie-actors").val(),
         director: $("#edit-movie-director").val(),
         plot: $("#edit-movie-plot").val(),
         id: $("#edit-movie-id").val()
