@@ -24,10 +24,10 @@ function buildCards(movie){
             <p class="card-text movie-director">${movie.director}</p>
             <p class="card-text movie-year">${movie.year}</p>
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
-            <p class="card-text data-id="${movie.id}">${movie.id}</p>
+            <p class="card-text">${movie.id}</p>
             <div>
-               <button type="button" class="edit btn-secondary btn">Edit</button>        
-               <button type="button" class="delete btn-danger btn">Delete</button>        
+               <button type="button" data-id="${movie.id}" class="edit btn-secondary btn">Edit</button>        
+               <button type="button" data-id="${movie.id}" class="delete btn-danger btn">Delete</button>        
             </div>  
           </div>
         </div>
@@ -78,20 +78,17 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     })
     .catch(console.error);
 
-// $(".delete").click(() => {console.log("Hi!")});
 
-$(document).on('click','.delete',() => {});
+$(document).on('click', '.delete', function() {
+    let dataId = $(this).data("id");
+    deleteMovie(dataId);
+});
 
-
-
-
-// $(".delete").click(() => {deleteMovie()});
 
 //Adding click event to dynamically created elements/button jQuery
 //stick to ES5 or ES6
 //Accessing IDs: // data attribute data-id
 
-{
     // // Get the main heading h1 by id
     // let movieInfo = document.getElementsByTagName('li');
     // $("")
@@ -100,4 +97,3 @@ $(document).on('click','.delete',() => {});
     //     var dbId = listItems[i].getAttribute("data-dbid");
     //     console.log(dbId);
     // }
-}
