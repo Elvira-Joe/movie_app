@@ -26,7 +26,7 @@ function buildCards(movie){
             <p class="card-text movie-genre">${movie.genre}</p>
             <p class="card-text movie-actors">${movie.actors}</p>
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
-            <p class="card-text">${movie.id}</p>
+            <p class="card-text movie-id">${movie.id}</p>
             <div>
                <button type="button" data-id="${movie.id}" data-title="${movie.title}" data-plot="${movie.plot}" data-director="${movie.director}" data-year="${movie.year}" data-genre="${movie.genre}" data-actors="${movie.actors}" data-rating="${movie.rating}"class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
                <button type="button" data-id="${movie.id}" class="delete btn-danger btn">Delete</button>        
@@ -102,6 +102,7 @@ $(document).on('click', '.edit', function() {
     let dataGenre = $(this).data("genre");
     let dataActors = $(this).data("actors");
     let dataRating = $(this).data("rating");
+    let dataId = $(this).data("id");
     $("#edit-movie-title").attr("value", dataTitle)
     $("#edit-movie-plot").attr("value", dataPlot)
     $("#edit-movie-director").attr("value", dataDirector)
@@ -109,18 +110,17 @@ $(document).on('click', '.edit', function() {
     $("#edit-movie-genre").attr("value", dataGenre)
     $("#edit-movie-actors").attr("value", dataActors)
     $("#edit-movie-rating").attr("value", dataRating)
+    $("#edit-movie-id").attr("value", dataId)
 });
-
-// $(document).getElementsByClassName("edit").value = movie.title
 
 //Function to indicate that we are modifying an existing movie
 
-const editMovie = id => fetch(`${apiURL}/${id}`, {
+const editMovie = movie => fetch(`${apiURL}/${movie.id}`, {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json'
     },
-    // body: JSON.stringify(movie)
+    body: JSON.stringify(movie)
 })
     .then(res => res.json())
     .then(data => {
@@ -137,7 +137,8 @@ $("#save-edit-movie").click(() => {
         poster: $("#edit-movie-poster").val(),
         year: $("#edit-movie-year").val(),
         director: $("#edit-movie-director").val(),
-        plot: $("#edit-movie-plot").val()
+        plot: $("#edit-movie-plot").val(),
+        id: $("#edit-movie-id").val()
     };
     editMovie(editMovieObj);
 });
