@@ -28,7 +28,7 @@ function buildCards(movie){
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
             <p class="card-text">${movie.id}</p>
             <div>
-               <button type="button" data-id="${movie.id}" class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
+               <button type="button" data-id="${movie.id}" data-title="${movie.title}" class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
                <button type="button" data-id="${movie.id}" class="delete btn-danger btn">Delete</button>        
             </div>  
           </div>
@@ -93,16 +93,20 @@ $(document).on('click', '.delete', function() {
 //Edit Button Function
 
 
-//Functions to Create:
 //Function to prepopulate the add/edit movie modal
+$(document).on('click', '.edit', function() {
+    // let dataId = $(this).data("id");
+    let dataTitle = $(this).data("title");
+    // let movieTitle = $( ".movie-title:eq(dataId)").val()
+    // $( ".movie-title:eq(dataId)").val(dataId)
+    $("#edit-movie-title").attr("value", dataTitle)
+});
 
-// $(document).on('click', '.edit', function() {
-//     let dataId = $(this).data("id");
-//     let movieTitle = $( ".movie-title:eq(dataId)").val()
-//     $("#edit-movie-title").attr("value", movieTitle)
-//
-//
-//     // $(this).parent().parent().parent().css("display", "none")
-// });
+// $(document).getElementsByClassName("edit").value = movie.title
 
 //Function to indicate that we are modifying an existing movie
+
+
+//Questions:
+//Where to pass ID to get the values, to set values
+//Dynamically updating page as items are added/deleted/edited
