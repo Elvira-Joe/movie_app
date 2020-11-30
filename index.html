@@ -19,11 +19,11 @@
         <div class="container-fluid">
 
             <!--Add Movie Modal/Form -->
-            <div class="modal fade" id="add-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal fade" id="add-edit-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalScrollableTitle">Add Movie</h5>
+                            <h5 class="modal-title" id="exampleModalScrollableTitle">Add/Edit Movie</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
@@ -51,6 +51,10 @@
                                     <input type="text" class="form-control" id="new-movie-genre">
                                 </div>
                                 <div class="form-group">
+                                    <label for="new-movie-actors">Movie Actors</label>
+                                    <input type="text" class="form-control" id="new-movie-actors">
+                                </div>
+                                <div class="form-group">
                                     <label for="new-movie-rating">Star Rating</label>
                                     <select class="form-control" id="new-movie-rating">
                                         <option>1</option>
@@ -75,7 +79,7 @@
             </div>
 
             <!--Add Movie Button -->
-            <button type="button" id="add-movie-btn" class="btn btn-primary" data-toggle="modal" data-target="#add-movie-modal">Add Movie</button>
+            <button type="button" id="add-movie-btn" class="btn btn-primary" data-toggle="modal" data-target="#add-edit-movie-modal">Add Movie</button>
 
             <!--Movie Cards Row-->
             <div id="movie-row" class="row"></div>
