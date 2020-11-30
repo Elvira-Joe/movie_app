@@ -28,7 +28,7 @@ function buildCards(movie){
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
             <p class="card-text">${movie.id}</p>
             <div>
-               <button type="button" data-id="${movie.id}" data-title="${movie.title}" class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
+               <button type="button" data-id="${movie.id}" data-title="${movie.title}" data-plot="${movie.plot}" data-director="${movie.director}" data-year="${movie.year}" data-genre="${movie.genre}" data-actors="${movie.actors}" data-rating="${movie.rating}"class="edit btn-secondary btn" data-toggle="modal" data-target="#edit-movie-modal">Edit</button>        
                <button type="button" data-id="${movie.id}" class="delete btn-danger btn">Delete</button>        
             </div>  
           </div>
@@ -95,18 +95,84 @@ $(document).on('click', '.delete', function() {
 
 //Function to prepopulate the add/edit movie modal
 $(document).on('click', '.edit', function() {
-    // let dataId = $(this).data("id");
     let dataTitle = $(this).data("title");
-    // let movieTitle = $( ".movie-title:eq(dataId)").val()
-    // $( ".movie-title:eq(dataId)").val(dataId)
+    let dataPlot = $(this).data("plot");
+    let dataDirector = $(this).data("director");
+    let dataYear = $(this).data("year");
+    let dataGenre = $(this).data("genre");
+    let dataActors = $(this).data("actors");
+    let dataRating = $(this).data("rating");
     $("#edit-movie-title").attr("value", dataTitle)
+    $("#edit-movie-plot").attr("value", dataPlot)
+    $("#edit-movie-director").attr("value", dataDirector)
+    $("#edit-movie-year").attr("value", dataYear)
+    $("#edit-movie-genre").attr("value", dataGenre)
+    $("#edit-movie-actors").attr("value", dataActors)
+    $("#edit-movie-rating").attr("value", dataRating)
 });
 
 // $(document).getElementsByClassName("edit").value = movie.title
 
 //Function to indicate that we are modifying an existing movie
 
+const editMovie = id => fetch(`${apiURL}/${id}`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    // body: JSON.stringify(movie)
+})
+    .then(res => res.json())
+    .then(data => {
+        console.log(`Success: created ${JSON.stringify(data)}`);
+        return movie;
+    })
+    .catch(console.error);
+
+//Save Edit Movie Click Event
+$("#save-edit-movie").click(() => {
+    let editMovieObj = {
+        title: $("#edit-movie-title").val(),
+        rating: $("#edit-movie-rating").val(),
+        poster: $("#edit-movie-poster").val(),
+        year: $("#edit-movie-year").val(),
+        director: $("#edit-movie-director").val(),
+        plot: $("#edit-movie-plot").val()
+    };
+    editMovie(editMovieObj);
+});
+
 
 //Questions:
 //Where to pass ID to get the values, to set values
 //Dynamically updating page as items are added/deleted/edited
+
+// $('#delete-movie-btn').click(function () {
+//     let deleteUserMovie = $('#deleted-movie').val();
+//     console.log(deleteUserMovie);
+//     getMovies().then((movies) => {
+//         let movieNameID;
+//         movies.forEach((movie) => {
+//             console.log(movie.title, movie.id);
+//             if (deleteUserMovie === movie.title) {
+//                 movieNameID = movie.id;
+//                 console.log((movie.id));
+//                 return deleteMovie(movieNameID);
+//             }
+//         });
+//         $('.apiOutput').html('');
+//         $('#deleted-movie').val('');
+//         let bucket = [];
+//         getMovies().then((movies) => {
+//             movies.forEach(({title, rating,}) => {
+//                 let movieInfoString = (`${title} - rating:  ${rating} <br>`);
+//                 bucket.push(movieInfoString);
+//             });
+//             $('.apiOutput').html(`Here are the all the movies:<br> ${bucket}`)
+//         }).catch((error) => {
+//             console.log('Oh no! Something went wrong.\nCheck the console for details.');
+//             console.log(error);
+//         });
+//     });
+// });
+
