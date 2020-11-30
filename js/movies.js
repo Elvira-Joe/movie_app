@@ -38,16 +38,6 @@ function buildCards(movie){
     return html;
 }
 
-//New Movie Object (created based on the example given in the curriculum)
-const newMovieObj = {
-    title: $("#new-movie-title").val(),
-    rating: $("#new-movie-rating").val(),
-    poster: $("#new-movie-poster").val(),
-    year: $("#new-movie-year").val(),
-    director: $("#new-movie-director").val(),
-    plot: $("#new-movie-plot").val(),
-    id: 10000
-};
 
 //Add Movie Function to create a POST Request
 const addNewMovie = (movie) => fetch(`${apiURL}`, {
@@ -64,4 +54,28 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
     })
     .catch(console.error);
 
-$("#save-new-movie").click(addNewMovie(newMovieObj));
+$("#save-new-movie").click(() => {
+    let newMovieObj = {
+        title: $("#new-movie-title").val(),
+        rating: $("#new-movie-rating").val(),
+        poster: $("#new-movie-poster").val(),
+        year: $("#new-movie-year").val(),
+        director: $("#new-movie-director").val(),
+        plot: $("#new-movie-plot").val()
+    };
+    addNewMovie(newMovieObj)});
+
+
+//Delete movie function accessed through the "delete" button inside each card
+const deleteMovie = id => fetch(`${apiURL}/${id}`, {
+    method: 'DELETE',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+    .then(res => res.json())
+    .then(() => {
+        console.log(`Success: deleted movie with id of ${id}`);
+    })
+    .catch(console.error);
+
