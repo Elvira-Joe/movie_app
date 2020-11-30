@@ -23,10 +23,12 @@ function buildCards(movie){
             <p class="card-text movie-plot">${movie.plot}</p>
             <p class="card-text movie-director">${movie.director}</p>
             <p class="card-text movie-year">${movie.year}</p>
+            <p class="card-text movie-genre">${movie.genre}</p>
+            <p class="card-text movie-actors">${movie.actors}</p>
             <p class="card-text movie-rating"><small class="text-muted"><strong>Rating: ${movie.rating} Stars</strong></small></p>
             <p class="card-text">${movie.id}</p>
             <div>
-               <button type="button" data-id="${movie.id}" class="edit btn-secondary btn">Edit</button>        
+               <button type="button" data-id="${movie.id}" class="edit btn-secondary btn" data-toggle="modal" data-target="#add-edit-movie-modal">Edit</button>        
                <button type="button" data-id="${movie.id}" class="delete btn-danger btn">Delete</button>        
             </div>  
           </div>
@@ -53,6 +55,7 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
     })
     .catch(console.error);
 
+//Save New Movie Click Event
 $("#save-new-movie").click(() => {
     let newMovieObj = {
         title: $("#new-movie-title").val(),
@@ -66,7 +69,7 @@ $("#save-new-movie").click(() => {
 });
 
 
-//Delete movie function accessed through the "delete" button inside each card
+//Delete Movie Function accessed through the "delete" button inside each card
 const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     method: 'DELETE',
     headers: {
@@ -79,12 +82,18 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     })
     .catch(console.error);
 
-
+//Delete Click Event
 $(document).on('click', '.delete', function() {
     let dataId = $(this).data("id");
     deleteMovie(dataId);
     // $(this).parent().parent().parent().css("display", "none")
 });
 
-//Edit button
 
+//Edit Button Function
+
+
+//Functions to Create:
+//Function to prepopulate the add/edit movie modal
+
+//Function to indicate that we are modifying an existing movie
