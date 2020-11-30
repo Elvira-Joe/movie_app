@@ -19,11 +19,11 @@
         <div class="container-fluid">
 
             <!--Add Movie Modal/Form -->
-            <div class="modal fade" id="add-edit-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal fade" id="add-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalScrollableTitle">Add/Edit Movie</h5>
+                            <h5 class="modal-title" id="exampleModalScrollableTitle">Add Movie</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
@@ -71,15 +71,75 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="save-new-movie" type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" id="add-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="save-new-movie" type="button" class="btn btn-primary">Add Movie</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Edit Movie Modal/Form -->
+            <div class="modal fade" id="edit-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalScrollableTitle-2">Edit Movie</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="edit-movie-title">Movie Title</label>
+                                    <input type="text" class="form-control" id="edit-movie-title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-plot">Plot</label>
+                                    <textarea class="form-control" id="edit-movie-plot" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-director">Director</label>
+                                    <input type="text" class="form-control" id="edit-movie-director">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-year">Movie Year</label>
+                                    <input type="text" class="form-control" id="edit-movie-year">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-genre">Movie Genre</label>
+                                    <input type="text" class="form-control" id="edit-movie-genre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-actors">Movie Actors</label>
+                                    <input type="text" class="form-control" id="edit-movie-actors">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-rating">Star Rating</label>
+                                    <select class="form-control" id="edit-movie-rating">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-movie-poster">Movie Poster URL</label>
+                                    <input type="text" class="form-control" id="edit-movie-poster">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="edit-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="save-edit-movie" type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!--Add Movie Button -->
-            <button type="button" id="add-movie-btn" class="btn btn-primary" data-toggle="modal" data-target="#add-edit-movie-modal">Add Movie</button>
+            <button type="button" id="add-movie-btn" class="btn btn-primary" data-toggle="modal" data-target="#add-movie-modal">Add Movie</button>
 
             <!--Movie Cards Row-->
             <div id="movie-row" class="row"></div>
