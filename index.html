@@ -12,10 +12,10 @@
     <header>
         <h1>Movie Application</h1>
         <h3 id="loading">Loading...</h3>
+
     </header>
 
     <main>
-        <!--Cards-->
         <div class="container-fluid">
 
             <!--Add Movie Modal/Form -->
@@ -146,7 +146,7 @@
             <button type="button" id="add-movie-btn" class="btn btn-primary" data-toggle="modal" data-target="#add-movie-modal">Add Movie</button>
 
             <!--Movie Cards Row-->
-            <div id="movie-row" class="row"></div>
+            <div id="movie-row" class="row"><!--Cards Will Display Here--></div>
         </div>
     </main>
 
@@ -163,6 +163,8 @@
 
 <script>
     "use strict";
+
+    //refresh Function
     const refresh = () => {
         getMovies().then(movies => {
             let html = `<div class="col-12 flex-wrap justify-content-around d-flex">`;
@@ -177,7 +179,10 @@
             $("#add-movie-btn").css("visibility", "visible");
         });
     }
+
+    //Using the refresh Function to Update the Page
     $(document).ready(refresh);
+
 </script>
 <script src="js/movies.js"></script>
 </body>
