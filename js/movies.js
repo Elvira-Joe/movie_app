@@ -2,14 +2,13 @@
 
 const apiURL = "https://wind-miniature-gauge.glitch.me/movies";
 
-
 //getMovies Function to fetch
 const getMovies = () => fetch(apiURL)
     .then(res => res.json())
     .catch(console.error)
 
 
-//Building Cards Function
+//buildCards Function
 function buildCards(movie){
     let html = '';
     html += `<div class="card col-12 mb-3" style="max-width: 540px;">
@@ -40,7 +39,9 @@ function buildCards(movie){
     return html;
 }
 
-//Add Movie Function to create a POST Request
+
+
+//addNewMovie Function to create a POST Request
 const addNewMovie = (movie) => fetch(`${apiURL}`, {
     method: 'POST',
     headers: {
@@ -55,6 +56,8 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
         return movie;
     })
     .catch(console.error);
+
+
 
 //Save New Movie Click Event
 $("#save-new-movie").click(() => {
@@ -72,7 +75,8 @@ $("#save-new-movie").click(() => {
 });
 
 
-//Delete Movie Function accessed through the "delete" button inside each card
+
+//Delete Movie Function to create a DELETE Request
 const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     method: 'DELETE',
     headers: {
@@ -86,18 +90,17 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     })
     .catch(console.error);
 
+
+
 //Delete Click Event
 $(document).on('click', '.delete', function() {
     let dataId = $(this).data("id");
     deleteMovie(dataId);
-    // $(this).parent().parent().parent().css("display", "none")
 });
 
 
-//Edit Button Function
 
-
-//Function to prepopulate the add/edit movie modal
+//Click Event to Prepopulate the Edit Movie Modal
 $(document).on('click', '.edit', function() {
     let dataTitle = $(this).data("title");
     let dataPoster = $(this).data("poster");
@@ -119,8 +122,9 @@ $(document).on('click', '.edit', function() {
     $("#edit-movie-id").val(dataId)
 });
 
-//Function to indicate that we are modifying an existing movie
 
+
+//Edit Movie Function to create a PUT Request
 const editMovie = movie => fetch(`${apiURL}/${movie.id}`, {
     method: 'PUT',
     headers: {
@@ -135,6 +139,8 @@ const editMovie = movie => fetch(`${apiURL}/${movie.id}`, {
         return movie;
     })
     .catch(console.error);
+
+
 
 //Save Edit Movie Click Event
 $("#save-edit-movie").click(() => {
@@ -151,38 +157,3 @@ $("#save-edit-movie").click(() => {
     };
     editMovie(editMovieObj);
 });
-
-
-//Questions:
-//Where to pass ID to get the values, to set values
-//Dynamically updating page as items are added/deleted/edited
-
-// $('#delete-movie-btn').click(function () {
-//     let deleteUserMovie = $('#deleted-movie').val();
-//     console.log(deleteUserMovie);
-//     getMovies().then((movies) => {
-//         let movieNameID;
-//         movies.forEach((movie) => {
-//             console.log(movie.title, movie.id);
-//             if (deleteUserMovie === movie.title) {
-//                 movieNameID = movie.id;
-//                 console.log((movie.id));
-//                 return deleteMovie(movieNameID);
-//             }
-//         });
-//         $('.apiOutput').html('');
-//         $('#deleted-movie').val('');
-//         let bucket = [];
-//         getMovies().then((movies) => {
-//             movies.forEach(({title, rating,}) => {
-//                 let movieInfoString = (`${title} - rating:  ${rating} <br>`);
-//                 bucket.push(movieInfoString);
-//             });
-//             $('.apiOutput').html(`Here are the all the movies:<br> ${bucket}`)
-//         }).catch((error) => {
-//             console.log('Oh no! Something went wrong.\nCheck the console for details.');
-//             console.log(error);
-//         });
-//     });
-// });
-
