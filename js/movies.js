@@ -1,6 +1,7 @@
 "use strict";
 
-const apiURL = "https://wind-miniature-gauge.glitch.me/movies";
+// const apiURL = "https://wind-miniature-gauge.glitch.me/movies";
+const apiURL = "https://heroku-movies-app.herokuapp.com/movies";
 
 //getMovies Function to fetch
 const getMovies = () => fetch(apiURL)
@@ -40,7 +41,6 @@ function buildCards(movie){
 }
 
 
-
 //addNewMovie Function to create a POST Request
 const addNewMovie = (movie) => fetch(`${apiURL}`, {
     method: 'POST',
@@ -51,7 +51,7 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
 })
     .then(res => res.json())
     .then(data => {
-        console.log(`Success: created ${JSON.stringify(data)}`);
+        $("#add-movie-modal").modal("toggle");
         refresh();
         return movie;
     })
@@ -61,10 +61,16 @@ const addNewMovie = (movie) => fetch(`${apiURL}`, {
 
 //Save New Movie Click Event
 $("#save-new-movie").click(() => {
+    let newMoviePoster = "";
+    if($("#new-movie-poster").length && $("#new-movie-poster").val().length){
+        newMoviePoster = $("#new-movie-poster").val()
+    }   else{
+        newMoviePoster = "media/popcorn-placeholder.jpg"
+    }
     let newMovieObj = {
         title: $("#new-movie-title").val(),
         rating: $("#new-movie-rating").val(),
-        poster: $("#new-movie-poster").val(),
+        poster: newMoviePoster,
         year: $("#new-movie-year").val(),
         genre: $("#new-movie-genre").val(),
         actors: $("#new-movie-actors").val(),
@@ -86,7 +92,6 @@ const deleteMovie = id => fetch(`${apiURL}/${id}`, {
     .then(res => res.json())
     .then(() => {
         refresh();
-        console.log(`Success: deleted movie with id of ${id}`);
     })
     .catch(console.error);
 
@@ -134,7 +139,7 @@ const editMovie = movie => fetch(`${apiURL}/${movie.id}`, {
 })
     .then(res => res.json())
     .then(data => {
-        console.log(`Success: created ${JSON.stringify(data)}`);
+        $("#edit-movie-modal").modal("toggle");
         refresh();
         return movie;
     })
